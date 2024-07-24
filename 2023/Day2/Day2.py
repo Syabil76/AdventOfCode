@@ -1,44 +1,32 @@
-from file import lister
+from file import list
 
-valid = {
-    "one" : 1,
-    "two" : 2,
-    "three" : 3,
-    "four" : 4,
-    "five" : 5,
-    "six" : 6,
-    "seven" : 7,
-    "eight" : 8,
-    "nine" : 9,
-}
+no = []
 
-def worditerate():
-    for item in range(0,5):
-        position = 1000
-        position2 = 1000
-        final1 = 0
-        final2 = 0
-        for x, y in valid.items():
-            count = 0
-            count2 = 0
-            while True:
-                string = lister[item]
-                if string[count:count+len(x)] == x:
-                    break
-                elif count+len(x) > len(string):
-                    break
-                count = count + 1
-            if count < position and count+len(x)<len(string):
-                position = count
-                final1 = y
-            while True:
-                string = lister[item]
-                if string[len(string)-len(x)-count2:len(string)-count2] == x:
-                    break
-                elif count2+len(x) > len(string):
-                    break
-                count2 = count2 + 1
-            if count2 < position2 and count2+len(x)<len(string):
-                position2 = count2
-                final2 = y
-        print(final1*10+final2)
+def main():
+    parameters = {
+        "red" : 12,
+        "green" : 13,
+        "blue": 14,
+    }
+    total =5050
+    for game in range(len(list)):
+        flag = False
+        current = list[game]
+        for step in range(len(current)):
+            if current[step:step+1].isdigit() == True:
+                if current[step+1:step+2].isdigit() == True:
+                    if int(current[step:step+2]) > parameters["red"]:
+                        for x, y in parameters.items():
+                            if current[step+3:step+3+len(x)] == x:
+                                if int(current[step:step+2]) > y:
+                                    no.append(f'game {game+1}')
+                                    total = total - game -1
+                                    flag = True
+                                    break
+            if flag == True:
+                break
+    print(no)
+    print(total)
+
+    
+main()
