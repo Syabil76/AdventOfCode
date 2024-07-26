@@ -1,0 +1,43 @@
+with open("final.txt") as file:
+    data = file.read()
+    text = data.strip().split("\n")
+total = 0
+for r in range(len(text)):
+    cl = text[r]
+    i = 0
+    a = 0
+    srow = 0
+    erow = 0
+    scol = 0
+    ecol = 0
+    num = ''
+    while i < len(cl):
+        if cl[i:i+1].isdigit() == True:
+            while True:
+                if cl[i:i+a+1].isdigit() == True:
+                    a = a + 1
+                else:
+                    num = cl[i:i+a]
+                    break
+            srow = r-1
+            erow = r+2
+            scol = i-1
+            ecol = i+1+a
+            if r < 1:
+                srow = r
+            if r > len(text)-2:
+                erow = r
+            if i < 1:
+                scol = i
+            if i > len(cl)-1:
+                ecol = i+a
+            # print(srow, erow, scol, ecol)
+            # look around....
+            for k in range(srow, erow):
+                for j in range(scol, ecol):
+                    if text[k][j].isdigit() == False and text[k][j] != '.':
+                        total = total + int(num)
+            i = i + a
+        i = i + 1
+print(total)
+
